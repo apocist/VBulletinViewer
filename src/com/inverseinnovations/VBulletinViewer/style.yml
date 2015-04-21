@@ -1,0 +1,55 @@
+
+# Colors should not have the # symbol
+
+paddingBottom:  20
+bgColor:        F2BDCD
+forum:
+   bgColor:     00FFFF
+   bgOpaque:    false
+   title:
+      marginTop:    0
+      marginBottom: 5
+      marginLeft:   15
+      marginRight:  0
+      align:        LEFT
+      font:
+         size:  20
+         style: 0
+         font:
+         color:        000000
+         colorHover:   FFFFFF
+         colorClick:   FFFFFF
+         bgOpaque:     true
+         bgColor:      FFFFFF
+         bgAlpha:      0
+         bgColorHover: EEEEEE
+         bgAlphaHover: 30
+         bgColorClick: 000000
+         bgAlphaClick: 50
+         
+subforum:
+   bgColor:         FF0000
+   bgOpaque:        false
+   title:
+      marginTop:    2
+      marginBottom: 0
+      marginLeft:   0
+      marginRight:  0
+      align:        CENTER
+      font:
+         size:  13
+         style: 0
+         font:
+         color:        000000
+         colorHover:   0000FF
+         colorClick:   00FFFF
+         bgOpaque:     true
+         bgColor:      FFFFFF
+         bgAlpha:      0
+         bgColorHover: EEEEEE
+         bgAlphaHover: 30
+         bgColorClick: 000000
+         bgAlphaClick: 50
+         
+         
+         
