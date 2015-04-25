@@ -19,16 +19,10 @@ public class Style {
 		YamlReader reader;
 		try {
 			InputStream in = VBulletinViewer.class.getResourceAsStream("style.yml");
-			Reader r = new InputStreamReader(in, "UTF-8");
+			Reader r = new InputStreamReader(in, "UTF-8");//TODO detect no file then make new one
 			reader = new YamlReader(r);
-			//reader.getConfig().setClassTag("contact", ListItem.class);
-			//reader.getConfig().setClassTag("subcontact", SubContact.class);
 			try {
 				this.style = reader.read(ListItem.class);
-					System.out.println(style.bgColor);
-					System.out.println(style.forum.bgColor);
-					System.out.println(style.forum.title.font.font);
-					
 				init();
 				
 			} catch (YamlException e) {

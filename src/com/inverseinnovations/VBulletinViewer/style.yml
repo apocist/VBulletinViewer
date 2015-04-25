@@ -21,7 +21,7 @@ forum:
          colorClick:   FFFFFF
          bgOpaque:     true
          bgColor:      FFFFFF
-         bgAlpha:      0
+         bgAlpha:      100
          bgColorHover: EEEEEE
          bgAlphaHover: 30
          bgColorClick: 000000
@@ -50,6 +50,3 @@ subforum:
          bgAlphaHover: 30
          bgColorClick: 000000
          bgAlphaClick: 50
-         
-         
-         

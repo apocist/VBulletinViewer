@@ -7,9 +7,9 @@ import java.util.List;
 import com.inverseinnovations.VBulletinAPI.Functions;
 
 public class ForumAction {
-	public static int	FORUM_HOME		= 1,
-						FORUM_DISPLAY	= 2,
-						THREAD_DISPLAY	= 3;
+	public static final int	FORUM_HOME		= 1,
+							FORUM_DISPLAY	= 2,
+							THREAD_DISPLAY	= 3;
 	private int action;
 	private List<String> values = new ArrayList<String>();
 

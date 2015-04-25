@@ -44,7 +44,7 @@ public class ForumListItem extends JPanel{
 							ForumAction.FORUM_DISPLAY, forum.getForumId()
 					)
 			);
-			mainTitle.setAlignmentX(Style.INST().style.forum.title.alignment);/*Style.INST().getAlignment("list_forumTitleAlign"));*/
+			mainTitle.setAlignmentX(Style.INST().style.forum.title.alignment);
 			mainTitlePanel.add(mainTitle);
 			mainTitlePanel.setOpaque(false);
 			this.add(mainTitlePanel, gbc);
@@ -67,8 +67,8 @@ public class ForumListItem extends JPanel{
 		this.subForumTitleStyle = style;
 	}
 	private void paintStyle(){
-		this.setBackground(Style.INST().style.forum.backgroundColor);/*Style.INST().getColor("list_forumBackgroundColor"));*/
-		this.setOpaque(Style.INST().style.forum.bgOpaque);/*Style.INST().getBoolean("list_forumBackgroundOpaque"));*/
+		this.setBackground(Style.INST().style.forum.backgroundColor);
+		this.setOpaque(Style.INST().style.forum.bgOpaque);
 	}
 
 }

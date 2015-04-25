@@ -8,11 +8,11 @@ import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.BevelBorder;
 
+import com.inverseinnovations.VBulletinViewer.ForumComponent.HomeHeaderListItem;
 import com.inverseinnovations.VBulletinViewer.Style.Style;
 
 class Window extends JFrame {
@@ -20,19 +20,8 @@ class Window extends JFrame {
 	protected VBulletinViewer App;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane = new JPanel();
-	//JPanel rightPane = new JPanel();
-	//JPanel topPane = new JPanel();
 	JScrollPane scrollPane = new JScrollPane();
-	JLabel testText = new JLabel("Test");
-	JLabel testText2 = new JLabel("Test");
-	JLabel testText3 = new JLabel("Test");
-	JLabel testText4 = new JLabel("Test");
-	JLabel testText5 = new JLabel("Test");
-	JPanel wPanel = new JPanel();
-	JPanel wPanel2 = new JPanel();
-	JPanel wPanel3 = new JPanel();
-	JPanel wPanel4 = new JPanel();
-	JPanel wPanel5 = new JPanel();
+
 	
 	
 	public Window(VBulletinViewer ref){
@@ -52,8 +41,11 @@ class Window extends JFrame {
 	public void clearWindow(){
 		contentPane.removeAll();
 	}
+	public void addHeader(){
+		addToList(new HomeHeaderListItem());
+	}
 	
-	public void addToList(Component comp){//TODO outdated
+	public void addToList(Component comp){
 		JPanel listItem = new JPanel();
 		//listItem.setLayout(new BorderLayout());
 		listItem.setLayout(new BorderLayout());
@@ -64,21 +56,21 @@ class Window extends JFrame {
 		
 		listItem.addComponentListener(new ComponentListener() {
             public void componentResized(ComponentEvent arg0) {
-            	listItem.setMaximumSize(new java.awt.Dimension(9999, comp.getHeight()+Style.INST().style.paddingBottom/*Style.INST().getInt("listItemPaddingBottom")*/));
+            	resizeComp(listItem, comp);
             }
 
             public void componentMoved(ComponentEvent arg0) {
             }
 
             public void componentShown(ComponentEvent arg0) {
-            	listItem.setMaximumSize(new java.awt.Dimension(9999, comp.getHeight()+Style.INST().style.paddingBottom/*Style.INST().getInt("listItemPaddingBottom")*/));
+            	resizeComp(listItem, comp);
             }
 
             public void componentHidden(ComponentEvent arg0) {
             }
         });
 		listItem.add(comp, BorderLayout.PAGE_START);
-		contentPane.add(listItem);	
+		contentPane.add(listItem);
 	}
 	public void addToList(ArrayList<Component> comps){
 		for(Component comp : comps){
@@ -86,9 +78,20 @@ class Window extends JFrame {
 		}
 		revalidate();	
 	}
+	private void resizeComp(JPanel listItem, Component parentComp){
+		listItem.setMaximumSize(new java.awt.Dimension(9999, parentComp.getHeight()+Style.INST().style.paddingBottom));
+	}
 	public void revalidate(){
-		contentPane.revalidate();
 		this.setVisible(true);
+		for(Component listItem : contentPane.getComponents()){//TODO hacky way to force componentShown...since its not doing it...
+			if(listItem instanceof JPanel){
+				for(ComponentListener listener : listItem.getComponentListeners()){
+					listener.componentShown(new ComponentEvent (listItem,ComponentEvent.COMPONENT_SHOWN));
+				}
+			}
+		}
+		contentPane.revalidate();
+		
 	}
 		
 }
