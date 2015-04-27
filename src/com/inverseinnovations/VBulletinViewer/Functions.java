@@ -37,7 +37,7 @@ public class Functions {
 					}
 					return color;
 				}
-			catch(NumberFormatException e){e.printStackTrace();}
+				catch(NumberFormatException e){e.printStackTrace();}
 			}
 		}
 		return Color.BLACK;

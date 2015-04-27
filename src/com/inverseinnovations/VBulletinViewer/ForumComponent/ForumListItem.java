@@ -16,6 +16,10 @@ public class ForumListItem extends JPanel{
 	private LabelStyle 	forumTitleStyle,
 						subForumTitleStyle;
 
+	public ForumListItem(Forum forum){
+		this(forum, Style.INST().style.forum.title.font, Style.INST().style.subforum.title.font);
+	}
+	
 	public ForumListItem(Forum forum, LabelStyle style, LabelStyle subStyle){
 		setTitleStyle(style);
 		setSubTitleStyle(subStyle);
@@ -39,10 +43,12 @@ public class ForumListItem extends JPanel{
 		paintStyle();
 		JPanel mainTitlePanel = new JPanel();
 		mainTitlePanel.setLayout(new BoxLayout(mainTitlePanel, BoxLayout.Y_AXIS));
+			ForumAction action = null;
+			if(!forum.getStatusIcon().equals("link")){
+				action = new ForumAction(ForumAction.FORUM_DISPLAY, forum.getForumId());
+			}
 			SLabel mainTitle = new SLabel(
-					forum.getTitle(), forumTitleStyle, new ForumAction(
-							ForumAction.FORUM_DISPLAY, forum.getForumId()
-					)
+					forum.getTitle(), forumTitleStyle, action
 			);
 			mainTitle.setAlignmentX(Style.INST().style.forum.title.alignment);
 			mainTitlePanel.add(mainTitle);
@@ -50,10 +56,12 @@ public class ForumListItem extends JPanel{
 			this.add(mainTitlePanel, gbc);
 		if(!forum.getSubForums().isEmpty()){
 			for(Forum subForum : forum.getSubForums()){
+				ForumAction subAction = null;
+				if(!subForum.getStatusIcon().equals("link")){
+					subAction = new ForumAction(ForumAction.FORUM_DISPLAY, subForum.getForumId());
+				}
 				this.add(new SubForumListItem(
-						subForum, subForumTitleStyle, new ForumAction(
-								ForumAction.FORUM_DISPLAY, subForum.getForumId()
-							)
+						subForum, subForumTitleStyle, subAction
 						)
 				, gbc2);
 				gbc.gridy++;

@@ -3,6 +3,7 @@
 
 paddingBottom:  20
 bgColor:        F2BDCD
+
 forum:
    bgColor:     00FFFF
    bgOpaque:    false
@@ -26,7 +27,6 @@ forum:
          bgAlphaHover: 30
          bgColorClick: 000000
          bgAlphaClick: 50
-         
 subforum:
    bgColor:         FF0000
    bgOpaque:        false
@@ -49,4 +49,27 @@ subforum:
          bgColorHover: EEEEEE
          bgAlphaHover: 30
          bgColorClick: 000000
-         bgAlphaClick: 50
+         bgAlphaClick: 50         
+thread:
+   bgColor:         FF0000
+   bgOpaque:        FALSE
+   title:
+      marginTop:    1
+      marginBottom: 0
+      marginLeft:   30
+      marginRight:  0
+      align:        LEFT
+      font:
+         size:  11
+         style: 0
+         font:
+         color:        0000FF
+         colorHover:   000000
+         colorClick:   0000CC
+         bgOpaque:     false
+         bgColor:      FFFFFF
+         bgAlpha:      0
+         bgColorHover: EEEEEE
+         bgAlphaHover: 0
+         bgColorClick: 000000
+         bgAlphaClick: 0

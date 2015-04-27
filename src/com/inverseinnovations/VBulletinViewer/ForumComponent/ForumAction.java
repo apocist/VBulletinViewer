@@ -5,11 +5,12 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.inverseinnovations.VBulletinAPI.Functions;
+import com.inverseinnovations.VBulletinViewer.Action;
 
 public class ForumAction {
-	public static final int	FORUM_HOME		= 1,
-							FORUM_DISPLAY	= 2,
-							THREAD_DISPLAY	= 3;
+	public static final int	FORUM_HOME		= Action.FORUM_HOME,
+							FORUM_DISPLAY	= Action.FORUM_DISPLAY,
+							THREAD_DISPLAY	= Action.THREAD_DISPLAY;
 	private int action;
 	private List<String> values = new ArrayList<String>();
 

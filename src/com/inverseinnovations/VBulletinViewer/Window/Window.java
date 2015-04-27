@@ -1,25 +1,15 @@
-package com.inverseinnovations.VBulletinViewer;
+package com.inverseinnovations.VBulletinViewer.Window;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
-import java.util.ArrayList;
-
-import javax.swing.BoxLayout;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.border.BevelBorder;
+import com.inverseinnovations.VBulletinViewer.VBulletinViewer;
 
-import com.inverseinnovations.VBulletinViewer.ForumComponent.HomeHeaderListItem;
-import com.inverseinnovations.VBulletinViewer.Style.Style;
-
-class Window extends JFrame {
+public class Window extends JFrame {
 	
 	protected VBulletinViewer App;
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane = new JPanel();
+	public final ContentArea ContentArea = new ContentArea(this);
 	JScrollPane scrollPane = new JScrollPane();
 
 	
@@ -30,15 +20,12 @@ class Window extends JFrame {
 	    setSize(1000, 750);
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    getContentPane().setLayout(new BorderLayout());
-	    scrollPane.setViewportView(contentPane);
+	    scrollPane.setViewportView(ContentArea);
 	    scrollPane.getVerticalScrollBar().setUnitIncrement(5);
-	    contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
-	    // important to call revalidate here so leftPane will notify scrollPane to update accordingly
-	    contentPane.revalidate();
 	    getContentPane().add(scrollPane, BorderLayout.CENTER);
 	}
 	
-	public void clearWindow(){
+	/*public void clearWindow(){
 		contentPane.removeAll();
 	}
 	public void addHeader(){
@@ -49,7 +36,7 @@ class Window extends JFrame {
 		JPanel listItem = new JPanel();
 		//listItem.setLayout(new BorderLayout());
 		listItem.setLayout(new BorderLayout());
-		listItem.setBackground(Style.INST().style.backgroundColor);/*Style.INST().getColor("listItemBackgroundColor"));*/
+		listItem.setBackground(Style.INST().style.backgroundColor);
 		listItem.setBorder(new BevelBorder(BevelBorder.RAISED));//TODO needs to be an option
 		
 		//need to get the size of comp and then set the max height
@@ -91,7 +78,6 @@ class Window extends JFrame {
 			}
 		}
 		contentPane.revalidate();
-		
-	}
+	}*/
 		
 }

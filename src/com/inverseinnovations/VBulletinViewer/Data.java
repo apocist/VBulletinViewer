@@ -5,11 +5,11 @@ import java.util.ArrayList;
 
 import com.inverseinnovations.VBulletinAPI.Forum;
 import com.inverseinnovations.VBulletinAPI.ForumHome;
+import com.inverseinnovations.VBulletinAPI.ForumThread;
 import com.inverseinnovations.VBulletinAPI.VBulletinAPI;
 import com.inverseinnovations.VBulletinAPI.Exception.*;
 import com.inverseinnovations.VBulletinViewer.ForumComponent.ForumListItem;
-import com.inverseinnovations.VBulletinViewer.Style.LabelStyle;
-import com.inverseinnovations.VBulletinViewer.Style.Style;
+import com.inverseinnovations.VBulletinViewer.ForumComponent.ThreadListItem;
 
 class Data {
 	protected VBulletinViewer App;
@@ -18,7 +18,7 @@ class Data {
 	private int lastForum = 0;
 	private int currentForum = 0;
 	
-	VBulletinAPI api;
+	private VBulletinAPI api;
 	
 	public Data(VBulletinViewer ref){
 		App = ref;
@@ -72,38 +72,36 @@ class Data {
 	}
 	
 	public void forumHome(){//TODO badly needs to be refactored
-		
-		//Forum Title
-		LabelStyle forumTitleStyle = Style.INST().style.forum.title.font;
-		//SubForum Title
-		LabelStyle subForumTitleStyle = Style.INST().style.subforum.title.font;
 		ArrayList<Forum> subForums = getHome().getSubForums();
-		ArrayList<Component> panelList = new ArrayList<Component>();
-		for(Forum forum : subForums){
-			panelList.add(new ForumListItem(forum, forumTitleStyle, subForumTitleStyle));
+		ArrayList<Component> forumList = new ArrayList<Component>();
+		for(Forum subForum : subForums){
+			forumList.add(new ForumListItem(subForum));
 		}
 		
 		updateForumHistory(0);
-		App.Window.clearWindow();
-		App.Window.addHeader();
-		App.Window.addToList(panelList);
+		App.Window.ContentArea.clearWindow();
+		App.Window.ContentArea.addHeader();
+		App.Window.ContentArea.addToList(forumList);
 	}
 	
 	public void forumView(int id){//TODO badly needs to be refactored
-		//Forum Title
-		LabelStyle forumTitleStyle = Style.INST().style.forum.title.font;
-		//SubForum Title
-		LabelStyle subForumTitleStyle = Style.INST().style.subforum.title.font;
+		
 		ArrayList<Forum> subForums = getForum(id).getSubForums();
-		ArrayList<Component> panelList = new ArrayList<Component>();
-		for(Forum forum : subForums){
-			panelList.add(new ForumListItem(forum, forumTitleStyle, subForumTitleStyle));
+		ArrayList<ForumThread> threads = getForum(id).getThreads();
+		ArrayList<Component> forumList = new ArrayList<Component>();
+		ArrayList<Component> threadList = new ArrayList<Component>();
+		for(Forum subForum : subForums){
+			forumList.add(new ForumListItem(subForum));
+		}
+		for(ForumThread thread : threads){
+			threadList.add(new ThreadListItem(thread));
 		}
 		
 		updateForumHistory(id);
-		App.Window.clearWindow();
-		App.Window.addHeader();
-		App.Window.addToList(panelList);
+		App.Window.ContentArea.clearWindow();
+		App.Window.ContentArea.addHeader();
+		App.Window.ContentArea.addToList(forumList);
+		App.Window.ContentArea.addToList(threadList);
 	}
 	
 }

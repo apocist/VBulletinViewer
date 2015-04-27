@@ -21,9 +21,9 @@ public class SLabel extends JLabel {
 		this(string, style, null);
 	}
 	public SLabel(String string, LabelStyle labelStyle, ForumAction forumAction){
-		//TODO Add function for onClick to perform said action
 		super(string);
 		setStyle(labelStyle);
+		if(string.equals("sex snapchats")){System.out.println(style.textColor.toString());}
 		setAction(forumAction);
 		
 		repaintStyle();
@@ -143,8 +143,8 @@ public class SLabel extends JLabel {
 	 * @param style StyleLabel
 	 * @return this
 	 */
-	public SLabel setStyle(LabelStyle style){
-		this.style = style;
+	public SLabel setStyle(LabelStyle labelStyle){
+		this.style = labelStyle;
 		return this;
 	}
 	

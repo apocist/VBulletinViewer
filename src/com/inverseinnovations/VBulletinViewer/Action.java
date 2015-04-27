@@ -5,9 +5,9 @@ import com.inverseinnovations.VBulletinViewer.ForumComponent.ForumAction;
 
 public class Action {
 	private VBulletinViewer App;
-	public static final int	FORUM_HOME		= ForumAction.FORUM_HOME,//TODO since calling action.FORUM_HOME is not considered a constant
-							FORUM_DISPLAY	= ForumAction.FORUM_DISPLAY,
-							THREAD_DISPLAY	= ForumAction.THREAD_DISPLAY;
+	public static final int	FORUM_HOME		= 1,
+							FORUM_DISPLAY	= 2,
+							THREAD_DISPLAY	= 3;
 	
 	private Action(){}
 	
@@ -40,6 +40,7 @@ public class Action {
 			break;
 		case THREAD_DISPLAY:
 			//TODO
+			System.out.println("Open Thread "+action.getVal(1));
 			break;
 		}
 	}

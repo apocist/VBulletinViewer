@@ -52,6 +52,7 @@ public class Style {
 	    public String bgColor = "";
 	    public Forum forum;
 	    public Forum subforum;
+	    public Forum thread;
 	    //Processed only
 	    public Color backgroundColor;
 	    
@@ -88,6 +89,7 @@ public class Style {
 	    public void init(){
 	    	forum.init();
 	    	subforum.init();
+	    	thread.init();
 	    	
 	    	this.backgroundColor = Functions.getColor(bgColor);
 	    }
