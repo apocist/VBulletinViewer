@@ -1,7 +1,7 @@
 package com.inverseinnovations.VBulletinViewer;
 
 import com.inverseinnovations.VBulletinAPI.Functions;
-import com.inverseinnovations.VBulletinViewer.ForumComponent.ForumAction;
+import com.inverseinnovations.VBulletinViewer.Window.ForumComponent.ForumAction;
 
 public class Action {
 	private VBulletinViewer App;
@@ -41,6 +41,7 @@ public class Action {
 		case THREAD_DISPLAY:
 			//TODO
 			System.out.println("Open Thread "+action.getVal(1));
+			App.Data.threadView(Functions.convertToInt(action.getVal(1)));
 			break;
 		}
 	}

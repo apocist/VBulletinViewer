@@ -1,4 +1,4 @@
-package com.inverseinnovations.VBulletinViewer.ForumComponent;
+package com.inverseinnovations.VBulletinViewer.Window.ForumComponent.ListItem;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -10,19 +10,20 @@ import javax.swing.JPanel;
 import com.inverseinnovations.VBulletinAPI.Forum;
 import com.inverseinnovations.VBulletinViewer.Style.LabelStyle;
 import com.inverseinnovations.VBulletinViewer.Style.Style;
+import com.inverseinnovations.VBulletinViewer.Window.ForumComponent.ForumAction;
+import com.inverseinnovations.VBulletinViewer.Window.ForumComponent.SLabel;
 
 public class ForumListItem extends JPanel{
 	private static final long serialVersionUID = 1L;
-	private LabelStyle 	forumTitleStyle,
-						subForumTitleStyle;
+	private LabelStyle style;
+	//private LabelStyle subForumTitleStyle;//TODO why are we even storing the style....? just have it load once...right?
 
-	public ForumListItem(Forum forum){
-		this(forum, Style.INST().style.forum.title.font, Style.INST().style.subforum.title.font);
-	}
 	
-	public ForumListItem(Forum forum, LabelStyle style, LabelStyle subStyle){
-		setTitleStyle(style);
-		setSubTitleStyle(subStyle);
+	public ForumListItem(Forum forum){
+		super();
+		setLabelStyle(Style.INST().style.forum.title.font);
+		//setTitleStyle(style);
+		//setSubTitleStyle(Style.INST().style.subforum.title.font);
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 			gbc.gridx = gbc.gridy = 0;
@@ -48,7 +49,7 @@ public class ForumListItem extends JPanel{
 				action = new ForumAction(ForumAction.FORUM_DISPLAY, forum.getForumId());
 			}
 			SLabel mainTitle = new SLabel(
-					forum.getTitle(), forumTitleStyle, action
+					forum.getTitle(), getLabelStyle(), action
 			);
 			mainTitle.setAlignmentX(Style.INST().style.forum.title.alignment);
 			mainTitlePanel.add(mainTitle);
@@ -61,20 +62,30 @@ public class ForumListItem extends JPanel{
 					subAction = new ForumAction(ForumAction.FORUM_DISPLAY, subForum.getForumId());
 				}
 				this.add(new SubForumListItem(
-						subForum, subForumTitleStyle, subAction
+						subForum, subAction
 						)
 				, gbc2);
 				gbc.gridy++;
 			}
 		}
 	}
-	public void setTitleStyle(LabelStyle style){
-		this.forumTitleStyle = style;
+	/*public void setTitleStyle(LabelStyle style){
+		this.style = style;
+	}*/
+	
+	public void setLabelStyle(LabelStyle labelStyle){
+		this.style = labelStyle;
 	}
-	public void setSubTitleStyle(LabelStyle style){
+	public LabelStyle getLabelStyle(){
+		return style;
+	}
+	/*public void setSubTitleStyle(LabelStyle style){
 		this.subForumTitleStyle = style;
 	}
-	private void paintStyle(){
+	public LabelStyle getSubTitleStyle(){
+		return this.subForumTitleStyle;
+	}*/
+	protected void paintStyle(){
 		this.setBackground(Style.INST().style.forum.backgroundColor);
 		this.setOpaque(Style.INST().style.forum.bgOpaque);
 	}

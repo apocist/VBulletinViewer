@@ -6,10 +6,12 @@ import java.util.ArrayList;
 import com.inverseinnovations.VBulletinAPI.Forum;
 import com.inverseinnovations.VBulletinAPI.ForumHome;
 import com.inverseinnovations.VBulletinAPI.ForumThread;
+import com.inverseinnovations.VBulletinAPI.Post;
 import com.inverseinnovations.VBulletinAPI.VBulletinAPI;
 import com.inverseinnovations.VBulletinAPI.Exception.*;
-import com.inverseinnovations.VBulletinViewer.ForumComponent.ForumListItem;
-import com.inverseinnovations.VBulletinViewer.ForumComponent.ThreadListItem;
+import com.inverseinnovations.VBulletinViewer.Window.ForumComponent.ListItem.ForumListItem;
+import com.inverseinnovations.VBulletinViewer.Window.ForumComponent.ListItem.PostListItem;
+import com.inverseinnovations.VBulletinViewer.Window.ForumComponent.ListItem.ThreadListItem;
 
 class Data {
 	protected VBulletinViewer App;
@@ -22,7 +24,7 @@ class Data {
 	
 	public Data(VBulletinViewer ref){
 		App = ref;
-		api = new VBulletinAPI(apiUrl, apiKey, "VBulletinViewer", "0.02");//TODO make connect funct
+		api = new VBulletinAPI(apiUrl, apiKey, "VBulletinViewer", "0.03");//TODO make connect funct
 	}
 
 	
@@ -53,6 +55,38 @@ class Data {
 	public Forum getForum(int id){
 		try {
 			return api.forumView(id);
+		} catch (NoPermissionLoggedout e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoPermissionLoggedin e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (VBulletinAPIException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public ForumThread getThread(int id){
+		try {
+			return api.threadView(id);
+		} catch (NoPermissionLoggedout e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoPermissionLoggedin e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (VBulletinAPIException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public ForumThread getThread(int id, int page, int perpage){
+		try {
+			return api.threadView(id, page, perpage);
 		} catch (NoPermissionLoggedout e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -102,6 +136,20 @@ class Data {
 		App.Window.ContentArea.addHeader();
 		App.Window.ContentArea.addToList(forumList);
 		App.Window.ContentArea.addToList(threadList);
+	}
+	
+	public void threadView(int id){//TODO badly needs to be refactored
+		
+		ArrayList<Post> posts = getThread(id).getPosts();
+		ArrayList<Component> postList = new ArrayList<Component>();
+		for(Post post : posts){
+			postList.add(new PostListItem(post));
+		}
+		
+		//updateForumHistory(id);
+		App.Window.ContentArea.clearWindow();
+		App.Window.ContentArea.addHeader();
+		App.Window.ContentArea.addToList(postList);
 	}
 	
 }

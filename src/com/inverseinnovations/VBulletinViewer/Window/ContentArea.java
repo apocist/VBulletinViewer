@@ -10,8 +10,9 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 
-import com.inverseinnovations.VBulletinViewer.ForumComponent.HomeHeaderListItem;
 import com.inverseinnovations.VBulletinViewer.Style.Style;
+import com.inverseinnovations.VBulletinViewer.Window.ForumComponent.ListItem.HomeHeaderListItem;
+import com.inverseinnovations.VBulletinViewer.Window.ForumComponent.ListItem.PostListItem;
 
 public class ContentArea extends JPanel{
 	private static final long serialVersionUID = 1L;
@@ -20,6 +21,21 @@ public class ContentArea extends JPanel{
 	public ContentArea(Window window){
 		this.Window = window;
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		Window.addComponentListener(new ComponentListener() {
+            public void componentResized(ComponentEvent arg0) {
+            	reval();
+            }
+
+            public void componentMoved(ComponentEvent arg0) {
+            }
+
+            public void componentShown(ComponentEvent arg0) {
+            	
+            }
+
+            public void componentHidden(ComponentEvent arg0) {
+            }
+        });
 	}
 	
 	public void addHeader(){
@@ -63,6 +79,8 @@ public class ContentArea extends JPanel{
 		this.removeAll();
 	}
 	private void resizeComp(JPanel listItem, Component parentComp){
+		//listItem.setMaximumSize(new java.awt.Dimension(Window.getWidth()-50, parentComp.getHeight()+Style.INST().style.paddingBottom));
+		//listItem.setMaximumSize(new java.awt.Dimension(Window.getWidth(), parentComp.getHeight()+Style.INST().style.paddingBottom));
 		listItem.setMaximumSize(new java.awt.Dimension(9999, parentComp.getHeight()+Style.INST().style.paddingBottom));
 	}
 	private void resize(){
@@ -76,6 +94,21 @@ public class ContentArea extends JPanel{
 		}
 		this.revalidate();
 		
+	}
+	
+	public void reval(){
+		for(Component comp : this.getComponents()){
+			if(comp instanceof JPanel){//got listItem
+				for(Component comp2 : ((JPanel)comp).getComponents()){
+					if(comp2 instanceof PostListItem){
+						//System.out.println("found it");
+						((PostListItem)comp2).reval(Window);
+					}
+				}
+					
+				
+			}
+		}
 	}
 	
 }

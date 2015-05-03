@@ -1,4 +1,4 @@
-package com.inverseinnovations.VBulletinViewer.ForumComponent;
+package com.inverseinnovations.VBulletinViewer.Window.ForumComponent;
 
 import java.awt.Font;
 import java.awt.Graphics;

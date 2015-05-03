@@ -1,10 +1,12 @@
-package com.inverseinnovations.VBulletinViewer.ForumComponent;
+package com.inverseinnovations.VBulletinViewer.Window.ForumComponent.ListItem;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 import com.inverseinnovations.VBulletinViewer.Style.LabelStyle;
 import com.inverseinnovations.VBulletinViewer.Style.Style;
+import com.inverseinnovations.VBulletinViewer.Window.ForumComponent.ForumAction;
+import com.inverseinnovations.VBulletinViewer.Window.ForumComponent.SLabel;
 
 public class HomeHeaderListItem extends JPanel{
 	private static final long serialVersionUID = 1L;
